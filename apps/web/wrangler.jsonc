@@ -6,7 +6,7 @@
   "compatibility_flags": ["nodejs_compat"],
   "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
   "d1_databases": [
-    { "binding": "DB", "database_name": "steller09", "database_id": "REPLACE_WITH_D1_DATABASE_ID" }
+    { "binding": "DB", "database_name": "steller09", "database_id": "47b3fb87-5d0b-4e86-9894-9e30fc8500a8" }
   ],
   "r2_buckets": [
     { "binding": "VIDEOS", "bucket_name": "steller09-videos" },
