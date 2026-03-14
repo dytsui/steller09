@@ -30,9 +30,7 @@ CREATE TABLE IF NOT EXISTS students (
   notes TEXT NOT NULL DEFAULT '',
   is_current INTEGER NOT NULL DEFAULT 0,
   created_at TEXT NOT NULL,
-  updated_at TEXT NOT NULL,
-  FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE SET NULL,
-  FOREIGN KEY(coach_user_id) REFERENCES users(id) ON DELETE SET NULL
+  updated_at TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS sessions (
@@ -50,8 +48,7 @@ CREATE TABLE IF NOT EXISTS sessions (
   error_message TEXT,
   created_at TEXT NOT NULL,
   updated_at TEXT NOT NULL,
-  completed_at TEXT,
-  FOREIGN KEY(student_id) REFERENCES students(id)
+  completed_at TEXT
 );
 
 CREATE TABLE IF NOT EXISTS analysis_results (
@@ -67,8 +64,7 @@ CREATE TABLE IF NOT EXISTS analysis_results (
   report_zh TEXT NOT NULL,
   report_en TEXT NOT NULL,
   analysis_version TEXT DEFAULT 'v1',
-  created_at TEXT NOT NULL,
-  FOREIGN KEY(session_id) REFERENCES sessions(id)
+  created_at TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS metrics (
@@ -77,8 +73,7 @@ CREATE TABLE IF NOT EXISTS metrics (
   shoulder_turn_deg REAL NOT NULL,
   hip_turn_deg REAL NOT NULL,
   head_sway_px REAL NOT NULL,
-  wrist_path_score REAL NOT NULL,
-  FOREIGN KEY(session_id) REFERENCES sessions(id)
+  wrist_path_score REAL NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS keyframes (
@@ -88,8 +83,7 @@ CREATE TABLE IF NOT EXISTS keyframes (
   time_sec REAL NOT NULL,
   confidence REAL NOT NULL,
   image_key TEXT,
-  preview_key TEXT,
-  FOREIGN KEY(session_id) REFERENCES sessions(id)
+  preview_key TEXT
 );
 
 CREATE TABLE IF NOT EXISTS issues (
@@ -102,8 +96,7 @@ CREATE TABLE IF NOT EXISTS issues (
   title_en TEXT NOT NULL,
   detail_zh TEXT NOT NULL,
   detail_en TEXT NOT NULL,
-  tip_short TEXT,
-  FOREIGN KEY(session_id) REFERENCES sessions(id)
+  tip_short TEXT
 );
 
 CREATE TABLE IF NOT EXISTS reports (
@@ -113,8 +106,7 @@ CREATE TABLE IF NOT EXISTS reports (
   body TEXT NOT NULL,
   provider TEXT NOT NULL,
   model TEXT,
-  created_at TEXT NOT NULL,
-  FOREIGN KEY(session_id) REFERENCES sessions(id)
+  created_at TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS training_plans (
@@ -126,8 +118,7 @@ CREATE TABLE IF NOT EXISTS training_plans (
   summary TEXT,
   drills_json TEXT,
   plan_zh TEXT,
-  plan_en TEXT,
-  FOREIGN KEY(session_id) REFERENCES sessions(id)
+  plan_en TEXT
 );
 
 CREATE TABLE IF NOT EXISTS share_logs (
@@ -135,8 +126,7 @@ CREATE TABLE IF NOT EXISTS share_logs (
   session_id TEXT NOT NULL,
   channel TEXT NOT NULL,
   share_key TEXT,
-  created_at TEXT NOT NULL,
-  FOREIGN KEY(session_id) REFERENCES sessions(id)
+  created_at TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS coach_links (
@@ -145,8 +135,7 @@ CREATE TABLE IF NOT EXISTS coach_links (
   student_user_id TEXT,
   student_profile_id TEXT,
   relationship_status TEXT NOT NULL DEFAULT 'active',
-  created_at TEXT NOT NULL,
-  FOREIGN KEY(coach_user_id) REFERENCES users(id) ON DELETE CASCADE
+  created_at TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS coach_invites (
@@ -156,6 +145,5 @@ CREATE TABLE IF NOT EXISTS coach_invites (
   email TEXT,
   status TEXT NOT NULL DEFAULT 'pending',
   expires_at TEXT NOT NULL,
-  created_at TEXT NOT NULL,
-  FOREIGN KEY(coach_user_id) REFERENCES users(id) ON DELETE CASCADE
+  created_at TEXT NOT NULL
 );
