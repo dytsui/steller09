@@ -15,7 +15,7 @@
     { "binding": "EXPORTS", "bucket_name": "steller09-exports" }
   ],
   "vars": {
-    "NEXT_PUBLIC_APP_URL": "https://steller09.example.workers.dev",
+    "NEXT_PUBLIC_APP_URL": "https://steller09.b384001.workers.dev",
     "NEXT_PUBLIC_DEFAULT_LOCALE": "zh-CN",
     "NEWS_API_BASE": "https://r.jina.ai/http://news.google.com/rss/search?q=golf",
     "ANALYZER_BASE_URL": "https://your-analyzer.onrender.com",
