@@ -8,9 +8,9 @@ export const appEnv = {
   server: {
     analyzerBaseUrl: read("ANALYZER_BASE_URL") ?? "",
     analyzerToken: read("ANALYZER_TOKEN") ?? "",
+    geminiModel: read("GEMINI_MODEL") ?? "gemini-2.5-flash-lite",
     geminiApiBase: read("GEMINI_API_BASE") ?? "https://generativelanguage.googleapis.com/v1beta",
     geminiApiKey: read("GEMINI_API_KEY") ?? "",
-    geminiModel: read("GEMINI_MODEL") ?? "gemini-2.5-flash-lite",
     authSecret: read("AUTH_SECRET") ?? "local-dev-secret",
     newsApiBase: read("NEWS_API_BASE") ?? ""
   }
