@@ -20,6 +20,15 @@ export async function listStudents(scope: RequestScope) {
 }
 
 export async function createMediaSession(scope: RequestScope, input: { studentId: string; file: File; sourceType: "upload" | "capture" }) {
+  if (!input.studentId) throw new Error("studentId required");
+
+  const studentInScope = await one<{ id: string }>(
+    `SELECT id FROM students
+     WHERE id=? AND (${scope.canReadAll ? "1=1" : scope.role === "pro" ? "coach_user_id=?" : "user_id=?"})`,
+    scope.canReadAll ? [input.studentId] : [input.studentId, scope.userId]
+  );
+  if (!studentInScope) throw new Error("student out of scope");
+
   const env = getRuntimeEnv();
   const sessionId = uid("ses");
   const videoKey = `videos/${scope.userId}/${sessionId}.mp4`;
