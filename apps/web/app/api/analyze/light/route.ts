@@ -2,9 +2,9 @@ import { NextResponse } from "next/server";
 import { getRequestScope } from "@/lib/scope";
 import { analyzeLight } from "@/lib/services";
 
-export async function POST(req: Request) {
+export async function POST(req: Request){
   const scope = await getRequestScope();
-  if (!scope) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!scope) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   const body = (await req.json()) as { sessionId: string };
-  return NextResponse.json(await analyzeLight(scope, body));
+  return NextResponse.json(await analyzeLight(scope, body.sessionId));
 }
