@@ -1,5 +1,0 @@
-services:
-  - type: web
-    name: steller08-analyzer
-    runtime: docker
-    dockerfilePath: ./Dockerfile

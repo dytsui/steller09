@@ -1,34 +1,30 @@
 # AGENTS.md - steller09
 
 ## 项目结构
-- `apps/web`: Next.js App Router + OpenNext Cloudflare 入口
-- `cloudflare/schema.sql`: D1 全量表结构
-- `docs/deploy.md`: 部署步骤
-- `docs/secrets-and-vars.md`: 变量与密钥策略
+- `apps/web`: Next.js + OpenNext Cloudflare Worker 项目
+- `cloudflare/schema.sql`: D1 schema
+- `docs/deploy.md`: 部署手册
+- `docs/secrets-and-vars.md`: 变量与密钥说明
 
-## 启动方式
+## 启动与构建
 - `npm install`
-- `npm run dev:web`
-
-## 构建方式
 - `npm run build:web`
 - `npm run typecheck:web`
-- `npx @opennextjs/cloudflare build --cwd apps/web`
+- `npm run open-next:build`
 
-## 部署方式
+## 部署
 - 配置 `apps/web/wrangler.jsonc`
-- `wrangler secret put ...`
-- `npx @opennextjs/cloudflare deploy --cwd apps/web`
+- 配置 secrets
+- `npm run open-next:deploy`
 
 ## Done Definition
-- Next build 成功
-- OpenNext build 成功
-- 指定页面与 API 路由均可解析
-- D1 schema 与代码字段一致
-- 不存在未解析 import/export
+- Next build 通过
+- OpenNext build 通过
+- 核心页面 / API 可解析
+- D1 schema 与代码字段匹配
+- 无未解析 import/export
 
-## 不允许做的事
-- 不允许保留无效/重复路由（如 app/app 镜像）
-- 不允许散落读取 env（必须集中到 `lib/env.ts`）
-- 不允许绕过 scope 权限校验
-- 不允许提交 build 失败代码
+## 禁止事项
+- 不要依赖 steller08 旧代码
+- 不要散落 env 读取
+- 不要绕过 scope 权限
