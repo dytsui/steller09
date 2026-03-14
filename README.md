@@ -16,12 +16,19 @@
 
 ## 本地命令
 ```bash
+git clone https://github.com/dytsui/steller09.git
 cd steller09
+pwd
+# 应看到类似: .../steller09
+
 npm install
 npm run build:web
 npm run typecheck:web
 npm run open-next:build
 ```
+
+如果你误进了其他目录（例如 `my-new-project`），`npm run` 只会看到默认 `test` 脚本，
+这时请先 `cd` 回本仓库根目录（含 `apps/`, `cloudflare/`, `docs/`）。
 
 ## 部署
 见 `docs/deploy.md`。
