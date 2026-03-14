@@ -1,0 +1,26 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "steller09",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-03-14",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "steller09", "database_id": "REPLACE_WITH_D1_DATABASE_ID" }
+  ],
+  "r2_buckets": [
+    { "binding": "VIDEOS", "bucket_name": "steller09-videos" },
+    { "binding": "KEYFRAMES", "bucket_name": "steller09-keyframes" },
+    { "binding": "SHARES", "bucket_name": "steller09-shares" },
+    { "binding": "EXPORTS", "bucket_name": "steller09-exports" }
+  ],
+  "vars": {
+    "NEXT_PUBLIC_APP_URL": "https://steller09.example.workers.dev",
+    "NEXT_PUBLIC_DEFAULT_LOCALE": "zh-CN",
+    "NEWS_API_BASE": "https://r.jina.ai/http://news.google.com/rss/search?q=golf",
+    "ANALYZER_BASE_URL": "https://your-analyzer.onrender.com",
+    "GEMINI_MODEL": "gemini-2.5-flash-lite",
+    "GEMINI_API_BASE": "https://generativelanguage.googleapis.com/v1beta"
+  },
+  "observability": { "enabled": true }
+}
