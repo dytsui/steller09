@@ -16,19 +16,16 @@ jobs:
     steps:
       - name: Checkout branch
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          registry-url: https://registry.npmjs.org/
 
       - name: Generate root package-lock.json
         run: npm install --package-lock-only
 
-      - name: Commit lockfile if changed
+      - name: Commit root lockfile if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
