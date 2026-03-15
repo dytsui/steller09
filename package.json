@@ -11,6 +11,11 @@
     "preview:web": "npm --workspace apps/web run preview",
     "deploy:web": "npm --workspace apps/web run deploy",
     "open-next:build": "npm --workspace apps/web run open-next:build",
-    "open-next:deploy": "npm --workspace apps/web run open-next:deploy"
-  }
+    "open-next:deploy": "npm --workspace apps/web run open-next:deploy",
+    "build": "npm run open-next:build"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "packageManager": "npm@10.9.0"
 }
