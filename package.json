@@ -9,6 +9,7 @@
     "build:web": "npm --workspace apps/web run build",
     "typecheck:web": "npm --workspace apps/web run typecheck",
     "preview:web": "npm --workspace apps/web run preview",
-    "deploy:web": "npm --workspace apps/web run deploy"
+    "deploy:web": "npm --workspace apps/web run deploy",
+    "open-next:build": "npx @opennextjs/cloudflare build --cwd apps/web"
   }
 }
