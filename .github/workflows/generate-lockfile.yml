@@ -28,7 +28,7 @@ jobs:
         working-directory: apps/web
         run: |
           npm config set registry https://registry.npmjs.org/
-          npm install --package-lock-only --workspaces=false
+          npm install --package-lock-only --legacy-peer-deps --no-fund --no-audit
 
       - name: Commit lockfile if changed
         run: |
