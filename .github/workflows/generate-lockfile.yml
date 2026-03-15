@@ -1,4 +1,4 @@
-name: Generate lockfile for apps/web
+name: Generate root lockfile
 
 on:
   push:
@@ -23,21 +23,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          registry-url: https://registry.npmjs.org/
 
-      - name: Generate package-lock.json
-        working-directory: apps/web
-        run: |
-          npm config set registry https://registry.npmjs.org/
-          npm install --package-lock-only --legacy-peer-deps --no-fund --no-audit
+      - name: Generate root package-lock.json
+        run: npm install --package-lock-only
 
       - name: Commit lockfile if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- apps/web/package-lock.json; then
+          if git diff --quiet -- package-lock.json; then
             echo "No lockfile changes"
           else
-            git add apps/web/package-lock.json
-            git commit -m "chore(web): add package-lock [skip-lock]"
+            git add package-lock.json
+            git commit -m "chore(repo): add root package-lock [skip-lock]"
             git push
           fi
