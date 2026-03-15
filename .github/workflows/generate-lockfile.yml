@@ -1,0 +1,43 @@
+name: Generate lockfile for apps/web
+
+on:
+  push:
+    branches:
+      - codex/migrate-middleware-to-proxy-in-apps/web-kc1fkd
+
+permissions:
+  contents: write
+
+jobs:
+  generate-lockfile:
+    if: "!contains(github.event.head_commit.message, '[skip-lock]')"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Generate package-lock.json
+        working-directory: apps/web
+        run: |
+          npm config set registry https://registry.npmjs.org/
+          npm install --package-lock-only
+
+      - name: Commit lockfile if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- apps/web/package-lock.json; then
+            echo "No lockfile changes"
+          else
+            git add apps/web/package-lock.json
+            git commit -m "chore(web): add package-lock [skip-lock]"
+            git push
+          fi
